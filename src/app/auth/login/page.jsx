@@ -5,28 +5,23 @@ import { useRouter } from "next/navigation";
 import { LOGIN_ACCOUNT } from "@/lib/appwrite/auth";
 
 export default function Login() {
-	// Form state
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
 	});
 
-	// State for errors and loading
 	const [errors, setErrors] = useState({});
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 
-	// Handle input changes
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
-		// Clear error for the field being edited
 		if (errors[name]) {
 			setErrors((prev) => ({ ...prev, [name]: "" }));
 		}
 	};
 
-	// Form validation
 	const validateForm = () => {
 		const newErrors = {};
 
@@ -46,7 +41,6 @@ export default function Login() {
 		return Object.keys(newErrors).length === 0;
 	};
 
-	// Handle form submission
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
